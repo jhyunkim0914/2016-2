@@ -13,6 +13,8 @@ App::App()
 	sm->setShotStock(10);
 	sm->setWhipStock(10);
 
+	slm->setPrice(100000);
+
 	cf = new CounterFacade(otm, sm, slm);
 	mf = new ManagerFacade(otm, sm, slm);
 	

@@ -163,8 +163,8 @@ void CounterFacade::serveCoffee()
 		cout << "주문이 없습니다." << endl;
 	else
 	{
-		otm->getFrontTransaction().printTransaction();
-		otm->deleteTransactionFromFront();
+		otm->getFrontTransaction().printCoffee();
+		otm->deleteTransactionByIndex(&otm->getFrontTransaction());
 	}
 }
 
@@ -182,12 +182,27 @@ void CounterFacade::cancle()
 		cout << "삭제하고자 하는 주문을 선택하십시오: ";
 		cin >> idx;
 		if (idx == 0)
+		{
+			cout << "명령취소" << endl;
 			return;
+		}
+		else if (idx > otm->getLength())
+		{
+			cout << "잘못된 값을 입력하였습니다." << endl;
+			return;
+		}
+		else if(idx > 0 && idx <= otm->getLength())
+		{
+			sm->addStockByIngredientsID(otm->getTransactionByIndex(idx - 1).getCoffeeInfo());
+			otm->deleteTransactionByIndex(idx - 1);
+			cout << "삭제가 완료되었습니다." << endl;
+		}
 		else
 		{
-			otm->deleteTransactionByIndex(idx - 1);
-			sm->addStockByIngredientsID(otm->getTransactionByIndex(idx - 1).getCoffeeInfo());
-			cout << "삭제가 완료되었습니다." << endl;
+			cout << "올바르지 않은 입력입니다." << endl;
+			cin.clear();
+			cin.ignore(256, '\n');
+			return;
 		}
 		return;
 	}

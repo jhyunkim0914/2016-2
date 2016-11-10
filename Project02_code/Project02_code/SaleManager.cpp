@@ -14,6 +14,11 @@ void SaleManager::addPrice(int price)
 	this->price += price;
 }
 
+void SaleManager::setPrice(int price)
+{
+	this->price = price;
+}
+
 int SaleManager::getPrice()
 {
 	return price;

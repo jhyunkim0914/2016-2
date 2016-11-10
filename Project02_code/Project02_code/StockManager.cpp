@@ -16,9 +16,15 @@ bool StockManager::addStockByIngredientsID(vector<int> ingredientsID)
 		if (*iter == 1)
 			coffeeStock++;
 		else if (*iter == 2)
+		{
+			coffeeStock++;
 			milkStock++;
+		}
 		else if (*iter == 3)
+		{
+			coffeeStock++;
 			mochaStock++;
+		}	
 		else if (*iter == 4)
 			shotStock++;
 		else if (*iter == 5)

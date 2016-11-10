@@ -14,8 +14,10 @@ public:
 	Transaction getTransactionByIndex(int idx);
 	void deleteTransactionFromFront();
 	void deleteTransactionByIndex(int idx);
+	void deleteTransactionByIndex(Transaction* transaction);
 	void printTransactions();
 	bool isEmpty();
+	int getLength();
 
 private:
 	vector<Transaction> orderTransactions;

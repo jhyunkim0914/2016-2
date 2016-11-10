@@ -14,7 +14,7 @@ bool ProductPriceCalculator::setDiscountAlgoritm(int discountAlgorithmID)
 		dcalg = new DiscountDrinkInStore();
 	else if (discountAlgorithmID == 2)
 		dcalg = new DiscountTakeOut();
-	else if (discountAlgorithmID == 2)
+	else if (discountAlgorithmID == 3)
 		dcalg = new DiscountCoupon();
 	else
 		return false;
