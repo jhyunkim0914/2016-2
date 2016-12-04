@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\users\jhyeo\source\repos\2016-2\test\test\main.cpp(17): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+  test.vcxproj -> C:\Users\jhyeo\Source\Repos\2016-2\test\Debug\test.exe
+  test.vcxproj -> C:\Users\jhyeo\Source\Repos\2016-2\test\Debug\test.pdb (Full PDB)
