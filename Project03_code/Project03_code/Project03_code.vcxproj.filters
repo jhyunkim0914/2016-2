@@ -45,6 +45,9 @@
     <ClInclude Include="userManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="DBTester.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="User.cpp">
@@ -60,6 +63,21 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="userManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DBTester.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Composer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="composerManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AlbumManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicAlbum.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

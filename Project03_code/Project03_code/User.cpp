@@ -44,6 +44,20 @@ void User::setPurchasedList(vector<int> list)
 	this->purchasedList = list;
 }
 
+void User::setUserFromKB()
+{
+	int tempId;
+	int isAdmin;
+	string tempPW;
+	cout << "관리자입니까?(0/1)";
+	cin >> isAdmin;
+	cout << "아이디(숫자) : ";
+	cin >> tempId;
+	cout << "비밀번호 : ";
+	cin >> tempPW;
+	this->isAdmin = isAdmin;  this->id = tempId; this->password = tempPW;
+}
+
 User::~User()
 {
 }

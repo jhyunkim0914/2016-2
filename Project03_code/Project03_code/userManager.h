@@ -7,17 +7,18 @@ class UserManager :
 {
 public:
 	UserManager();
-	UserManager(string fileName);
 	~UserManager();
 
 public:
 	bool setDBFromFile();
+	bool writeFileFromDB();
+	void showDB();
 	bool addUserToFile(User addedUser);
-	bool authenticateUser(int _id, string _pw);
-	vector<int> getPurchasedListByUserId(int _id);
-	vector<User> getAllUserList();	
+	User* authenticateUser(int _id, string _pw);
+	vector<int>* getPurchasedListByUserId(int _id);
+	vector<User>* getAllUserList();	
 	bool addAlbumIdToPurchaseList(int _userId, int _albumId);
-
+	
 private:
 	vector<User> userList;
 };

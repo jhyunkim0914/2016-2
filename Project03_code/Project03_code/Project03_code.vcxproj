@@ -152,15 +152,21 @@
     <ClInclude Include="BaseRecommendationAlg.h" />
     <ClInclude Include="Composer.h" />
     <ClInclude Include="composerManager.h" />
+    <ClInclude Include="DBTester.h" />
     <ClInclude Include="MusicAlbum.h" />
     <ClInclude Include="RecommendTopTen.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="userManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlbumManager.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="BaseManager.cpp" />
+    <ClCompile Include="Composer.cpp" />
+    <ClCompile Include="composerManager.cpp" />
+    <ClCompile Include="DBTester.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MusicAlbum.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="userManager.cpp" />
   </ItemGroup>

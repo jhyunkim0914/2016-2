@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 #include "RecommendTopTen.h"
+#include "DBTester.h"
+
 class App
 {
 public:
@@ -16,7 +18,7 @@ private:
 	void printManagerMenu();
 
 	void userRegisteration();
-	void login();
+	int login();
 	void buyAlbum();
 	void printPurchasedList();
 	void recommend();
@@ -24,11 +26,14 @@ private:
 	void addComposer();
 	void addAlbum();
 
+	void showList();
+	void showDB();
+
 private:
 	BaseRecommendationAlg* rcdAlg;
 	UserManager* um;
 	ComposerManager* cm;
 	AlbumManager* am;
-	int currentUserId;
+	User* currentUser;
 };
 

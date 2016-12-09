@@ -1,8 +1,3 @@
 ﻿  userManager.cpp
-c:\users\jhyeo\source\repos\2016-2\project03_code\project03_code\usermanager.cpp(38): warning C4244: '초기화 중': 'std::streamoff'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  App.cpp
-  코드를 생성하고 있습니다...
-  건너뛰고 있습니다... (관련된 변경 내용 없음)
-  main.cpp
   Project03_code.vcxproj -> C:\Users\jhyeo\Source\Repos\2016-2\Project03_code\Debug\Project03_code.exe
   Project03_code.vcxproj -> C:\Users\jhyeo\Source\Repos\2016-2\Project03_code\Debug\Project03_code.pdb (Full PDB)

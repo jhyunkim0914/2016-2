@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
@@ -15,6 +16,7 @@ public:
 	void setPW(string password);
 	vector<int> *getPurchasedList();
 	void setPurchasedList(vector<int> list);
+	void setUserFromKB();
 	~User();
 
 private:
