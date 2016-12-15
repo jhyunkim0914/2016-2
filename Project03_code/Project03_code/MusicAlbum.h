@@ -18,6 +18,7 @@ public:
 	void setPurchasedCount(int count);
 	void addPurchasedCount();
 	void setAlbumFromKB();
+	static bool comp(MusicAlbum &t1, MusicAlbum &t2);
 private:
 	int id;
 	string name;

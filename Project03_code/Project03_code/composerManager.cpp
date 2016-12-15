@@ -35,19 +35,19 @@ bool ComposerManager::setDBFromFile()
 	{
 		//아이디 입력
 		inFile.read((char *)&id, sizeof(int));
-		cout << id << '\t';
+		//cout << id << '\t';
 		temp.setId(id);
 		//패스워드 사이즈 입력
 		inFile.read((char *)&nameSize, sizeof(int));
-		cout << nameSize << '\t';
+		//cout << nameSize << '\t';
 		//패스워드 입력
 		name.resize(nameSize);
 		inFile.read(&name[0], nameSize);
-		cout << name << '\t';
+		//cout << name << '\t';
 		temp.setName(name);
 		
 		composerList.push_back(temp);
-		cout << endl;
+		//cout << endl;
 	}
 	inFile.close();
 

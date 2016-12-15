@@ -15,6 +15,7 @@ public:
 	void showDB();
 	MusicAlbum searchMusicAlbumByName(string _name);
 	MusicAlbum searchMusicAlbumById(int _id);
+	vector<MusicAlbum> searchMusicAlbumByComposer(int _id);
 	bool updateMusicAlbumSellCount(int albumId);
 	vector<MusicAlbum>* getAllAlbumList();
 	

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include "RecommendTopTen.h"
+#include "RecommendByPurchasedList.h"
 #include "DBTester.h"
 
 class App

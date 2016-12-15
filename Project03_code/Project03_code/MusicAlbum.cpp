@@ -62,3 +62,8 @@ void MusicAlbum::setAlbumFromKB()
 	cin >> name;
 	return;
 }
+
+bool MusicAlbum::comp(MusicAlbum & t1, MusicAlbum & t2)
+{
+	return (t1.getPurchasedCount() > t2.getPurchasedCount());
+}

@@ -46,27 +46,27 @@ bool AlbumManager::setDBFromFile()
 	{
 		//아이디 입력
 		inFile.read((char *)&id, sizeof(int));
-		cout << id << '\t';
+		//cout << id << '\t';
 		temp.setId(id);
 		//작곡가 입력
 		inFile.read((char *)&composerId, sizeof(int));
-		cout << composerId << '\t';
+		//cout << composerId << '\t';
 		temp.setComposerId(composerId);
 		//구매횟수 입력
 		inFile.read((char *)&buyCount, sizeof(int));
-		cout << buyCount << '\t';
+		//cout << buyCount << '\t';
 		temp.setPurchasedCount(buyCount);
 		//이름 사이즈 입력
 		inFile.read((char *)&nameSize, sizeof(int));
-		cout << nameSize << '\t';
+		//cout << nameSize << '\t';
 		//이름 입력
 		name.resize(nameSize);
 		inFile.read(&name[0], nameSize);
-		cout << name << '\t';
+		//cout << name << '\t';
 		temp.setName(name);
 
 		albumList.push_back(temp);
-		cout << endl;
+		//cout << endl;
 	}
 	inFile.close();
 
@@ -180,6 +180,19 @@ MusicAlbum AlbumManager::searchMusicAlbumById(int _id)
 		if (it->getId() == _id)
 		{
 			return *it;
+		}
+	}
+	return temp;
+}
+
+vector<MusicAlbum> AlbumManager::searchMusicAlbumByComposer(int _id)
+{
+	vector<MusicAlbum> temp;
+	for (vector<MusicAlbum>::iterator it = albumList.begin(); it != albumList.end(); it++)
+	{
+		if (it->getComposerId() == _id)
+		{
+			temp.push_back(*it);
 		}
 	}
 	return temp;

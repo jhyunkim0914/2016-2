@@ -60,15 +60,22 @@ void App::run()
 				else if (check == 3)
 					break;
 				else
+				{
+					cin.clear();
+					cin.ignore(100, '\n');
 					cout << "Wrong!!!!" << endl;
+				}
+					
 			}
 		}
 		else if (input == 4)
 		{
-			break;
+			return;
 		}
 		else
 		{
+			cin.clear();
+			cin.ignore(100, '\n');
 			cout << "Wrong Input!" << endl;
 		}
 	}
@@ -104,6 +111,8 @@ void App::printUserMenu()
 		}
 		else
 		{
+			cin.clear();
+			cin.ignore(100, '\n');
 			cout << "Wrong Input!" << endl;
 		}
 	}
@@ -134,6 +143,8 @@ void App::printManagerMenu()
 		}
 		else
 		{
+			cin.clear();
+			cin.ignore(100, '\n');
 			cout << "Wrong Input!" << endl;
 		}
 	}
@@ -156,6 +167,12 @@ int App::login()
 	int id; string password;
 	cout << "ID : "; cin >> id;
 	cout << "PW : "; cin >> password;
+	if (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(100, '\n');
+		cout << "Wrong Input!" << endl;
+	}
 	currentUser = um->authenticateUser(id, password); //로그인 성공시 포인터 입력, 아닐시 nullptr
 	if (currentUser == nullptr)
 	{
@@ -174,12 +191,24 @@ int App::login()
 
 void App::buyAlbum()
 {
-	cout << "앨범아이디 : ";
+	int index = 1;
+	cout << "앨범 목록" << endl;
+	for (vector<MusicAlbum>::iterator it = am->getAllAlbumList()->begin(); it != am->getAllAlbumList()->end(); it++)
+	{
+		Composer composer = cm->searchComposerById(it->getComposerId());
+		cout << index << "번. " << composer.getName() << " - " << it->getName() << "(구매지수 : " << it->getPurchasedCount() << "회)" << endl;
+		index++;
+	}
+
+	cout << "앨범아이디를 입력해주세요 : ";
 	int input;
 	cin >> input;
+	if (input == 0)
+		return;
 	currentUser->getPurchasedList()->push_back(input);
 	um->writeFileFromDB();
 	am->updateMusicAlbumSellCount(input);
+	cout << "구매가 완료되었습니다!" << endl;
 }
 
 void App::printPurchasedList()
@@ -190,12 +219,53 @@ void App::printPurchasedList()
 	{
 		MusicAlbum album = am->searchMusicAlbumById(*it); Composer composer = cm->searchComposerById(album.getComposerId());
 		cout << index << "번. " << composer.getName() << " - " << album.getName() << "(구매지수 : " << album.getPurchasedCount() << "회)" << endl;
+		index++;
 	}
 }
 
 void App::recommend()
 {
+	BaseRecommendationAlg *bralg;
+	int input = -1;
+	cout << "1. Top10 리스트\n";
+	cout << "2. 구매목록 기반 추천\n:";
+	cin >> input;
+
+	if (input == 1)
+	{
+		bralg = new RecommendTopTen(um, cm, am, currentUser);
+		vector<MusicAlbum> topten = bralg->recommend();
+		int index = 1;
+		cout << "Top10 목록" << endl;
+		for (vector<MusicAlbum>::iterator it = topten.begin(); it != topten.end(); it++)
+		{
+			Composer composer = cm->searchComposerById(it->getComposerId());
+			cout << index << "위. " << composer.getName() << " - " << it->getName() << "(구매지수 : " << it->getPurchasedCount() << "회)" << endl;
+			index++;
+		}
+	}
+	else if (input == 2)
+	{
+		bralg = new RecommendByPurchasedList(um, cm, am, currentUser);
+		vector<MusicAlbum> musicList = bralg->recommend();
+		int index = 1;
+		cout << "구매목록 기반 추천 목록" << endl;
+		for (vector<MusicAlbum>::iterator it = musicList.begin(); it != musicList.end(); it++)
+		{
+			Composer composer = cm->searchComposerById(it->getComposerId());
+			cout << index << "순위. " << composer.getName() << " - " << it->getName() << "(구매지수 : " << it->getPurchasedCount() << "회)" << endl;
+			index++;
+		}
+	}
+	else
+	{
+		cin.clear();
+		cin.ignore(100, '\n');
+		cout << "잘못된 입력값입니다." << endl;
+	}
+	
 }
+
 
 void App::addComposer()
 {
@@ -211,8 +281,19 @@ void App::addAlbum()
 	Composer composer;
 	string searchParam;
 
-	cout << "음악가를 선택하십시오 : ";
+	int index = 1;
+	for (vector<Composer>::iterator it = cm->getAllComposerList()->begin(); it != cm->getAllComposerList()->end(); it++)
+	{
+		cout << index++ << ". " << it->getName() << endl;
+	}
+
+	cout << "음악가를 이름으로 선택하십시오 : ";
 	cin >> searchParam;
+	if (cm->searchComposerByName(searchParam).getId() == -1)
+	{
+		cout << "음악가가 없습니다." << endl;
+		return;
+	}
 	composer = cm->searchComposerByName(searchParam);
 	MusicAlbum album;
 	album.setAlbumFromKB();
@@ -242,7 +323,7 @@ void App::showList()
 	cout << "albumList" << endl;
 	for (vector<MusicAlbum>::iterator it = am->getAllAlbumList()->begin(); it != am->getAllAlbumList()->end(); it++)
 	{
-		cout << it->getId() << '\t' << it->getId() << '\t' << it->getComposerId() << '\t' << it->getName() << '\t' << it->getPurchasedCount() << '\t' << endl;
+		cout << it->getId() << '\t' << it->getComposerId() << '\t' << it->getPurchasedCount() << '\t' << it->getName()  << '\t' << endl;
 	}
 }
 
